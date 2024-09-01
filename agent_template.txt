@@ -1,0 +1,22 @@
+{
+  "cloudwatch.emitMetrics": true,
+  "kinesis.endpoint": "",
+  "firehose.endpoint": "",
+
+  "awsAccessKeyId": "<enter_your_key_here>",
+  "awsSecretAccessKey": "<enter_your_secret_key_here>",
+
+  "flows": [
+    {
+      "filePattern": "/var/log/weather/*.log",
+      "kinesisStream": "kinesis-demo",
+      "partitionKeyOption": "RANDOM",
+      "dataProcessingOptions": [
+        {
+          "optionName": "CSVTOJSON",
+          "customFieldNames": ["Region", "Country", "State", "City", "Month", "Day", "Year", "AvgTemperature"]
+        }
+      ]
+    }
+  ]
+}
